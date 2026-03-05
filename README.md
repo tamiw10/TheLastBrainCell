@@ -1,10 +1,12 @@
 # HacktheFuture – Automotive Supply Chain Risk Agent
 
-An AI-powered supply chain risk agent for automotive manufacturers. It assesses disruptions, recommends mitigation options, and helps with escalation and supplier communication.
+An AI-powered supply chain risk agent for automotive manufacturers. It assesses disruptions, recommends mitigation options, quantifies business impact in CAD, and helps with escalation and supplier communication.
 
 ## Features
 
 - **Risk assessment** – Evaluates supply chain disruptions and their impact
+- **Business impact (CAD)** – Revenue at risk, margin at risk, service level drop, downtime cost, SLA penalty, expedite premium
+- **With vs without agent** – Compares scenarios to show revenue loss prevented, service level protection, cost optimization, and operational continuity improvement
 - **Signal handling** – Processes disruption signals (delays, quality issues, etc.)
 - **Mitigation options** – Suggests actions with trade-offs
 - **Approval boundaries** – Indicates when human approval is required
@@ -51,13 +53,25 @@ Then open the web UI (typically http://localhost:8000 or as shown in the termina
 - **Initialize baseline data**: `python scripts/init_baseline.py`
 - **Reset demo data**: `python scripts/reset_demo_data.py`
 
+### Configuration
+
+Edit `data/business_parameters.json` to adjust cost assumptions (selling price, margin, unit cost, SLA penalty, downtime cost, etc.) used for business impact calculations.
+
 ## Project structure
 
 ```
 HacktheFuture/
-├── multi_tool_agent/     # Agent definition and tools
-├── data/                 # JSON data (shipments, inventory, suppliers, etc.)
-├── scripts/              # Utility scripts
+├── multi_tool_agent/       # Agent definition, tools, risk & metrics engines
+│   ├── agent.py
+│   ├── tools.py
+│   ├── risk_engine.py
+│   ├── metrics_engine.py   # Revenue, margin, SLA, expedite cost calculations
+│   ├── perception.py
+│   └── signal_simulator.py
+├── data/                   # JSON data (shipments, inventory, suppliers, etc.)
+│   ├── business_parameters.json  # Cost assumptions (CAD) for impact calculations
+│   └── baseline/           # Snapshot for reset_demo_data
+├── scripts/                # Utility scripts
 └── requirements.txt
 ```
 
