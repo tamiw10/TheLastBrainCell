@@ -51,8 +51,8 @@ python scripts/reset_demo_data.py
 # 2) Simulate disruption signals (creates a fresh scenario)
 python -m multi_tool_agent.signal_simulator
 
-# 3) Start ADK Web UI (use 8001 to avoid "address already in use")
-adk web --port 8001
+# 3) Start ADK Web UI
+adk web
 ```
 
 Open the UI at: http://127.0.0.1:8001
