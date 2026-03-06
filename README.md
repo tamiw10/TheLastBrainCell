@@ -96,7 +96,7 @@ adk web
 ## Project structure
 
 ```
-HacktheFuture/
+TheLastBrainCell/
 ├── multi_tool_agent/      # Agent definition, tools, perception, metrics
 ├── data/                  # JSON data (shipments, inventory, suppliers, etc.)
 │   └── baseline/          # Clean baseline state for reproducible demos
